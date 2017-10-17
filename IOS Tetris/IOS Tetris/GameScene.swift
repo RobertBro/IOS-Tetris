@@ -9,7 +9,13 @@
 import SpriteKit
 import GameplayKit
 
+let TickLengthLevelOne=TimeInterval(600)
+
 class GameScene: SKScene {
+    
+    var tick:(() ->())?
+    var tickLengtrhMillis=TickLengthLevelOne
+    var lastTick:NSDate?
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -71,5 +77,20 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        guard let lastTick=lastTick else{
+            return
+        }
+        let timePassed=lastTick.timeIntervalSinceNow * -1000.0
+        if timePassed>tickLengtrhMillis{
+            self.lastTick=NSDate()
+            tick?()
+        }
+    }
+    func startTicking() {
+        lastTick=NSDate()
+    }
+    func stopTicking(){
+        lastTick=nil
     }
 }
