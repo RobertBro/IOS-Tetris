@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D880971B1F96107F008331CE /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880971A1F96107F008331CE /* Array2D.swift */; };
+		D880971D1F961273008331CE /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880971C1F961273008331CE /* Block.swift */; };
 		D8CF026A1F8CD87000A15BD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF02691F8CD87000A15BD5 /* AppDelegate.swift */; };
 		D8CF026E1F8CD87000A15BD5 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D8CF026D1F8CD87000A15BD5 /* Actions.sks */; };
 		D8CF02701F8CD87000A15BD5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF026F1F8CD87000A15BD5 /* GameScene.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		D880971A1F96107F008331CE /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+		D880971C1F961273008331CE /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		D8CF02661F8CD87000A15BD5 /* IOS Tetris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Tetris.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CF02691F8CD87000A15BD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8CF026D1F8CD87000A15BD5 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				D8CF02761F8CD87000A15BD5 /* Assets.xcassets */,
 				D8CF02781F8CD87000A15BD5 /* LaunchScreen.storyboard */,
 				D8CF027B1F8CD87000A15BD5 /* Info.plist */,
+				D880971C1F961273008331CE /* Block.swift */,
 			);
 			path = "IOS Tetris";
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			files = (
 				D8CF02701F8CD87000A15BD5 /* GameScene.swift in Sources */,
 				D880971B1F96107F008331CE /* Array2D.swift in Sources */,
+				D880971D1F961273008331CE /* Block.swift in Sources */,
 				D8CF02721F8CD87000A15BD5 /* GameViewController.swift in Sources */,
 				D8CF026A1F8CD87000A15BD5 /* AppDelegate.swift in Sources */,
 			);
