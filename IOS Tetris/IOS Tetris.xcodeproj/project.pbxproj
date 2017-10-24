@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80BDE141F9F460400DAD79B /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BDE131F9F460400DAD79B /* Engine.swift */; };
 		D880971B1F96107F008331CE /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880971A1F96107F008331CE /* Array2D.swift */; };
 		D880971D1F961273008331CE /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = D880971C1F961273008331CE /* Block.swift */; };
 		D8C9BCB51F9F44EF00259926 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C9BCB41F9F44EF00259926 /* Shape.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D80BDE131F9F460400DAD79B /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		D880971A1F96107F008331CE /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		D880971C1F961273008331CE /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		D8C9BCB41F9F44EF00259926 /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				D8CF02781F8CD87000A15BD5 /* LaunchScreen.storyboard */,
 				D8CF027B1F8CD87000A15BD5 /* Info.plist */,
 				D880971C1F961273008331CE /* Block.swift */,
+				D80BDE131F9F460400DAD79B /* Engine.swift */,
 				D8C9BCB41F9F44EF00259926 /* Shape.swift */,
 			);
 			path = "IOS Tetris";
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CF02701F8CD87000A15BD5 /* GameScene.swift in Sources */,
+				D80BDE141F9F460400DAD79B /* Engine.swift in Sources */,
 				D8C9BCB51F9F44EF00259926 /* Shape.swift in Sources */,
 				D880971B1F96107F008331CE /* Array2D.swift in Sources */,
 				D880971D1F961273008331CE /* Block.swift in Sources */,

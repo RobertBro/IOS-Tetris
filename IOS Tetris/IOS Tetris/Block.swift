@@ -33,34 +33,31 @@ enum BlockColor: Int, CustomStringConvertible {
         return self.spriteName
     }
     
-    // #6
     static func random() -> BlockColor {
         return BlockColor(rawValue:Int(arc4random_uniform(NumberOfColors)))!
     }
 }
 
 class Block: Hashable, CustomStringConvertible {
-    // #8
-    // Constants
+    
     let color: BlockColor
     
-    // #9
-    // Properties
+
     var column: Int
     var row: Int
     var sprite: SKSpriteNode?
     
-    // #10
+
     var spriteName: String {
         return color.spriteName
     }
     
-    // #11
+
     var hashValue: Int {
         return self.column ^ self.row
     }
     
-    // #12
+
     var description: String {
         return "\(color): [\(column), \(row)]"
     }
@@ -72,7 +69,7 @@ class Block: Hashable, CustomStringConvertible {
     }
 }
 
-// #13
+
 func ==(lhs: Block, rhs: Block) -> Bool {
     return lhs.column == rhs.column && lhs.row == rhs.row && lhs.color.rawValue == rhs.color.rawValue
 }
