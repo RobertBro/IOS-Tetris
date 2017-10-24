@@ -34,7 +34,7 @@ class GameViewController: UIViewController {
             self.scene.movePreviewShape(shape: self.engine.nextShape!) {
                 let nextShapes = self.engine.newShape()
                 self.scene.startTicking()
-                self.scene.addPreviewShapeToScene(nextShapes.nextShape!) {}
+                self.scene.addPreviewShapeToScene(shape: nextShapes.nextShape!) {}
             }
         }
     }

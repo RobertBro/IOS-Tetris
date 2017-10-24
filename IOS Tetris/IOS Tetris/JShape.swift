@@ -1,4 +1,4 @@
-class Jshape:Shape{
+class JShape:Shape{
 
     override var blockRowColumnPositions: [Orientation : Array<(columnDiff: Int, rowDiff: Int)>]{
         return[

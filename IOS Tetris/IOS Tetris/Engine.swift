@@ -28,14 +28,14 @@ class Engine{
     
     func startGame(){
         if (nextShape == nil){
-            nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
+            nextShape = Shape.random(startingColumn: PreviewColumn, startingRow: PreviewRow)
         }
     }
     
-    func newShape()->(fallingShape:?, nextShape:Shape?){
+    func newShape()->(fallingShape:Shape?, nextShape:Shape?){
         fallingShape = nextShape
-        nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
-        fallingshape?.moveTo(StartingColumn,row: StartingRow)
+        nextShape = Shape.random(startingColumn: PreviewColumn, startingRow: PreviewRow)
+        fallingShape?.moveTo(column: StartingColumn,row: StartingRow)
         return (fallingShape, nextShape)
     }
 }
