@@ -29,10 +29,10 @@ class GameViewController: UIViewController {
         // Present the scene.
         skView.presentScene(scene)
         
-        scene.addPreviewShapeToScene(engine.nextShape!) {
-            self.swiftris.nextShape?.moveTo(StartingColumn, row: StartingRow)
-            self.scene.movePreviewShape(self.swiftris.nextShape!) {
-                let nextShapes = self.swiftris.newShape()
+        scene.addPreviewShapeToScene(shape: engine.nextShape!) {
+            self.engine.nextShape?.moveTo(column: StartingColumn, row: StartingRow)
+            self.scene.movePreviewShape(shape: self.engine.nextShape!) {
+                let nextShapes = self.engine.newShape()
                 self.scene.startTicking()
                 self.scene.addPreviewShapeToScene(nextShapes.nextShape!) {}
             }
@@ -45,6 +45,6 @@ class GameViewController: UIViewController {
     
     func didTick() {
         engine.fallingShape?.lowerShapeByOneRow()
-        scene.redrawShape(engine.fallingShape!, completion: {})
+        scene.redrawShape(shape: engine.fallingShape!, completion: {})
     }
 }

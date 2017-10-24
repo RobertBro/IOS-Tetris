@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import CoreGraphics
 
 let TickLengthLevelOne=TimeInterval(600)
 let BlockSize:CGFloat = 20.0
@@ -45,7 +46,7 @@ class GameScene: SKScene {
         addChild(gameLayer)
         
         let gameBoardTexture = SKTexture(imageNamed: "gameboard")
-        let gameBoard = SKSpriteNode(texture: gameBoardTexture, size: CGSizeMake(BlockSize * CGFloat(NumColumns), BlockSize * CGFloat(NumRows)))
+        let gameBoard = SKSpriteNode(texture: gameBoardTexture, size: CGSize(width: BlockSize * CGFloat(NumColumns), height: BlockSize * CGFloat(NumRows)))
         gameBoard.anchorPoint = CGPoint(x:0, y:1.0)
         gameBoard.position = LayerPosition
         
@@ -116,10 +117,10 @@ class GameScene: SKScene {
     func pointForColumn(column: Int, row: Int) -> CGPoint {
         let x = LayerPosition.x + (CGFloat(column) * BlockSize) + (BlockSize / 2)
         let y = LayerPosition.y - ((CGFloat(row) * BlockSize) + (BlockSize / 2))
-        return CGPointMake(x, y)
+        return CGPoint(x: x, y: y)
     }
     
-    func addPreviewShapeToScene(shape:Shape, completion:() -> ()) {
+    func addPreviewShapeToScene(shape:Shape, completion:@escaping () -> ()) {
         for block in shape.blocks {
             // #10
             var texture = textureCache[block.spriteName]
@@ -129,44 +130,44 @@ class GameScene: SKScene {
             }
             let sprite = SKSpriteNode(texture: texture)
             // #11
-            sprite.position = pointForColumn(block.column, row:block.row - 2)
+            sprite.position = pointForColumn(column: block.column, row:block.row - 2)
             shapeLayer.addChild(sprite)
             block.sprite = sprite
             
             // Animation
             sprite.alpha = 0
             // #12
-            let moveAction = SKAction.moveTo(pointForColumn(block.column, row: block.row), duration: NSTimeInterval(0.2))
-            moveAction.timingMode = .EaseOut
-            let fadeInAction = SKAction.fadeAlphaTo(0.7, duration: 0.4)
-            fadeInAction.timingMode = .EaseOut
-            sprite.runAction(SKAction.group([moveAction, fadeInAction]))
+            let moveAction = SKAction.move(to: pointForColumn(column: block.column, row: block.row), duration: TimeInterval(0.2))
+            moveAction.timingMode = .easeOut
+            let fadeInAction = SKAction.fadeAlpha(to: 0.7, duration: 0.4)
+            fadeInAction.timingMode = .easeOut
+            sprite.run(SKAction.group([moveAction, fadeInAction]))
         }
-        runAction(SKAction.waitForDuration(0.4), completion: completion)
+        run(SKAction.wait(forDuration: 0.4), completion: completion)
     }
     
-    func movePreviewShape(shape:Shape, completion:() -> ()) {
+    func movePreviewShape(shape:Shape, completion:@escaping () -> ()) {
         for block in shape.blocks {
             let sprite = block.sprite!
-            let moveTo = pointForColumn(block.column, row:block.row)
-            let moveToAction:SKAction = SKAction.moveTo(moveTo, duration: 0.2)
-            moveToAction.timingMode = .EaseOut
-            sprite.runAction(
-                SKAction.group([moveToAction, SKAction.fadeAlphaTo(1.0, duration: 0.2)]), completion: {})
+            let moveTo = pointForColumn(column: block.column, row:block.row)
+            let moveToAction:SKAction = SKAction.move(to: moveTo, duration: 0.2)
+            moveToAction.timingMode = .easeOut
+            sprite.run(
+                SKAction.group([moveToAction, SKAction.fadeAlpha(to: 1.0, duration: 0.2)]), completion: {})
         }
-        runAction(SKAction.waitForDuration(0.2), completion: completion)
+        run(SKAction.wait(forDuration: 0.2), completion: completion)
     }
     
-    func redrawShape(shape:Shape, completion:() -> ()) {
+    func redrawShape(shape:Shape, completion:@escaping () -> ()) {
         for block in shape.blocks {
             let sprite = block.sprite!
-            let moveTo = pointForColumn(block.column, row:block.row)
-            let moveToAction:SKAction = SKAction.moveTo(moveTo, duration: 0.05)
-            moveToAction.timingMode = .EaseOut
+            let moveTo = pointForColumn(column: block.column, row:block.row)
+            let moveToAction:SKAction = SKAction.move(to: moveTo, duration: 0.05)
+            moveToAction.timingMode = .easeOut
             if block == shape.blocks.last {
-                sprite.runAction(moveToAction, completion: completion)
+                sprite.run(moveToAction, completion: completion)
             } else {
-                sprite.runAction(moveToAction)
+                sprite.run(moveToAction)
             }
         }
     }
