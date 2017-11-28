@@ -60,18 +60,41 @@ final func initializeBlocks(){
         guard let blockRowColumnTranslation:Array<(columnDiff: Int, rowDiff: Int)> = blockRowColumnPositions[orientation] else {
             return
         }
-        // #1
+
         for (idx, diff) in blockRowColumnTranslation.enumerated() {
             blocks[idx].column = column + diff.columnDiff
             blocks[idx].row = row + diff.rowDiff
         }
     }
     
+    final func clockwiseRotation() {
+        let newOrientation = Orientation.rotate(orientation: orientation, clockwise: true)
+        rotateBlocks(orientation: newOrientation)
+        orientation = newOrientation
+    }
+    
+    final func counterClockwiseRotation() {
+        let newOrientation = Orientation.rotate(orientation: orientation, clockwise: false)
+        rotateBlocks(orientation: newOrientation)
+        orientation = newOrientation
+    }
+    
     final func lowerShapeByOneRow() {
         shiftBy(columns: 0, rows:1)
     }
     
-    // #2
+    final func raiseShapeByOneRow() {
+        shiftBy(columns: 0, rows:-1)
+    }
+    
+    final func shiftRightByOneColumn() {
+        shiftBy(columns: 1, rows:0)
+    }
+    
+    final func shiftLeftByOneColumn() {
+        shiftBy(columns: -1, rows:0)
+    }
+
     final func shiftBy(columns: Int, rows: Int) {
         self.column += columns
         self.row += rows
@@ -81,7 +104,7 @@ final func initializeBlocks(){
         }
     }
     
-    // #3
+
     final func moveTo(column: Int, row:Int) {
         self.column = column
         self.row = row
@@ -90,7 +113,7 @@ final func initializeBlocks(){
     
     final class func random(startingColumn:Int, startingRow:Int) -> Shape {
         switch Int(arc4random_uniform(NumShapeTypes)) {
-        // #4
+
         case 0:
             return SquareShape(column:startingColumn, row:startingRow)
         case 1:
@@ -150,6 +173,7 @@ enum Orientation: Int, CustomStringConvertible{
         
 
     }
+    
     
     
 }

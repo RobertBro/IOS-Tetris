@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, EngineFunctions {
  var scene: GameScene!
     var engine: Engine!
     override func viewDidLoad() {
@@ -25,18 +25,11 @@ class GameViewController: UIViewController {
         scene.tick = didTick
         
         engine = Engine()
+        engine.delegate = self
         engine.startGame()
-        // Present the scene.
         skView.presentScene(scene)
         
-        scene.addPreviewShapeToScene(shape: engine.nextShape!) {
-            self.engine.nextShape?.moveTo(column: StartingColumn, row: StartingRow)
-            self.scene.movePreviewShape(shape: self.engine.nextShape!) {
-                let nextShapes = self.engine.newShape()
-                self.scene.startTicking()
-                self.scene.addPreviewShapeToScene(shape: nextShapes.nextShape!) {}
-            }
-        }
+
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -44,7 +37,51 @@ class GameViewController: UIViewController {
     }
     
     func didTick() {
-        engine.fallingShape?.lowerShapeByOneRow()
-        scene.redrawShape(shape: engine.fallingShape!, completion: {})
+         engine.letShapeFall()
+    }
+    func nextShape() {
+        let newShapes = engine.newShape()
+        guard let fallingShape = newShapes.fallingShape else {
+            return
+        }
+        self.scene.addPreviewShapeToScene(shape: newShapes.nextShape!) {}
+        self.scene.movePreviewShape(shape: fallingShape) {
+
+            self.view.isUserInteractionEnabled = true
+            self.scene.startTicking()
+        }
+    }
+    
+    func gameBegin(engine: Engine) {
+
+        if engine.nextShape != nil && engine.nextShape!.blocks[0].sprite == nil {
+            scene.addPreviewShapeToScene(shape: engine.nextShape!) {
+                self.nextShape()
+            }
+        } else {
+            nextShape()
+        }
+    }
+    
+    func gameEnd(engine: Engine) {
+        view.isUserInteractionEnabled = false
+        scene.stopTicking()
+    }
+    
+    func gameNextLevel(engine: Engine) {
+        
+    }
+    
+    func gameShapeDrop(engine: Engine) {
+        
+    }
+    
+    func gameShapeLand(engine: Engine) {
+        scene.stopTicking()
+        nextShape()
+    }
+
+    func gameShapeMove(engine: Engine) {
+        scene.redrawShape(shape: engine.fallingShape!) {}
     }
 }
