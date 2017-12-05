@@ -116,7 +116,6 @@ class Engine{
         var removedLines = Array<Array<Block>>()
         for row in (1..<NumRows).reversed() {
             var rowOfBlocks = Array<Block>()
-            // #11
             for column in 0..<NumColumns {
                 guard let block = blockArray[column, row] else {
                     continue
@@ -131,11 +130,9 @@ class Engine{
             }
         }
         
-        // #12
         if removedLines.count == 0 {
             return ([], [])
         }
-        // #13
         let pointsEarned = removedLines.count * PointsPerLine * level
         score += pointsEarned
         if score >= level * LevelThreshold {
@@ -146,7 +143,6 @@ class Engine{
         var fallenBlocks = Array<Array<Block>>()
         for column in 0..<NumColumns {
             var fallenBlocksArray = Array<Block>()
-            // #14
             for row in (1..<removedLines[0][0].row).reversed() {
                 guard let block = blockArray[column, row] else {
                     continue
@@ -189,12 +185,12 @@ class Engine{
             if detectIllegalPlacement() {
                 endGame()
             } else {
-                rotateShape()
+                settleShape()
             }
         } else {
             delegate?.gameShapeMove(engine: self)
             if detectTouch() {
-                rotateShape()
+                settleShape()
             }
         }
     }

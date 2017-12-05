@@ -10,9 +10,10 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController, EngineFunctions {
+class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizerDelegate{
  var scene: GameScene!
-    var engine: Engine!
+ var engine: Engine!
+ var panPointReference:CGPoint?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +35,43 @@ class GameViewController: UIViewController, EngineFunctions {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    @IBAction func didPan(_ sender: UIPanGestureRecognizer) {
+        let currentPoint = sender.translation(in: self.view)
+        if let originalPoint = panPointReference {
+            if abs(currentPoint.x - originalPoint.x) > (BlockSize * 0.9) {
+                if sender.velocity(in: self.view).x > CGFloat(0) {
+                    engine.moveShapeRight()
+                    panPointReference = currentPoint
+                } else {
+                    engine.moveShapeLeft()
+                    panPointReference = currentPoint
+                }
+            }
+        } else if sender.state == .began {
+            panPointReference = currentPoint
+        }
+    }
+    @IBAction func didSwipe(_ sender: UISwipeGestureRecognizer) {
+        engine.dropShape()
+    }
+    @IBAction func didTap(_ sender: UITapGestureRecognizer) {
+        engine.rotateShape()
+    }
+    private func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    private func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailByGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer is UISwipeGestureRecognizer {
+            if otherGestureRecognizer is UIPanGestureRecognizer {
+                return true
+            }
+        } else if gestureRecognizer is UIPanGestureRecognizer {
+            if otherGestureRecognizer is UITapGestureRecognizer {
+                return true
+            }
+        }
+        return false
     }
     
     func didTick() {
@@ -73,12 +111,22 @@ class GameViewController: UIViewController, EngineFunctions {
     }
     
     func gameShapeDrop(engine: Engine) {
-        
+        scene.stopTicking()
+        scene.redrawShape(shape: engine.fallingShape!) {
+            engine.letShapeFall()
+        }
     }
     
     func gameShapeLand(engine: Engine) {
         scene.stopTicking()
-        nextShape()
+        self.view.isUserInteractionEnabled = false
+        let removedLines = engine.removeCompletedLines()
+        if removedLines.linesRemoved.count > 0 {
+                self.gameShapeLand(engine: engine)
+            }
+         else {
+            nextShape()
+        }
     }
 
     func gameShapeMove(engine: Engine) {
