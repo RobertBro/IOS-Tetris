@@ -25,6 +25,7 @@
 		D8CF02751F8CD87000A15BD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8CF02731F8CD87000A15BD5 /* Main.storyboard */; };
 		D8CF02771F8CD87000A15BD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CF02761F8CD87000A15BD5 /* Assets.xcassets */; };
 		D8CF027A1F8CD87000A15BD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8CF02781F8CD87000A15BD5 /* LaunchScreen.storyboard */; };
+		D8D93D3C2004ED1D00FA97BB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = D8D93D3B2004ED1D00FA97BB /* Sounds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		D8CF02761F8CD87000A15BD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8CF02791F8CD87000A15BD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8CF027B1F8CD87000A15BD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8D93D3B2004ED1D00FA97BB /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				D8C9BCB81F9F4FB000259926 /* TShape.swift */,
 				D8C9BCBA1F9F515C00259926 /* LineShape.swift */,
 				D8C9BCBC1F9F52FC00259926 /* LShape.swift */,
+				D8D93D3B2004ED1D00FA97BB /* Sounds */,
 				D8C9BCBE1F9F547000259926 /* JShape.swift */,
 				D8C9BCC01F9F559E00259926 /* SShape.swift */,
 				D8C9BCC21F9F56FC00259926 /* ZShape.swift */,
@@ -163,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D93D3C2004ED1D00FA97BB /* Sounds in Resources */,
 				D8CF02751F8CD87000A15BD5 /* Main.storyboard in Resources */,
 				D8CF02771F8CD87000A15BD5 /* Assets.xcassets in Resources */,
 				D8CF027A1F8CD87000A15BD5 /* LaunchScreen.storyboard in Resources */,

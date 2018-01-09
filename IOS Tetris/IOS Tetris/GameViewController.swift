@@ -32,6 +32,8 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
         
 
     }
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -92,6 +94,9 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
     
     func gameBegin(engine: Engine) {
 
+        levelLabel.text="\(engine.level)"
+        scoreLabel.text="\(engine.score)"
+        scene.tickLengtrhMillis=TickLengthLevelOne
         if engine.nextShape != nil && engine.nextShape!.blocks[0].sprite == nil {
             scene.addPreviewShapeToScene(shape: engine.nextShape!) {
                 self.nextShape()
@@ -104,9 +109,19 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
     func gameEnd(engine: Engine) {
         view.isUserInteractionEnabled = false
         scene.stopTicking()
-    }
+        scene.playSound(sound: "Sounds/gameover.mp3")
+        scene.collapsingLinesAnimation(linesToRemove: engine.removeAllBlocks(), fallenBlocks: engine.removeAllBlocks()){
+            engine.startGame()
+        }}
     
     func gameNextLevel(engine: Engine) {
+        levelLabel.text="\(engine.level)"
+        if scene.tickLengtrhMillis>=100{
+            scene.tickLengtrhMillis-=100
+        }else if scene.tickLengtrhMillis>50{
+            scene.tickLengtrhMillis-=50
+        }
+        scene.playSound(sound: "Sounds/levelUp.mp3")
         
     }
     
@@ -115,16 +130,20 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
         scene.redrawShape(shape: engine.fallingShape!) {
             engine.letShapeFall()
         }
+        scene.playSound(sound: "Sounds/drop.mp3")
     }
     
     func gameShapeLand(engine: Engine) {
         scene.stopTicking()
-        self.view.isUserInteractionEnabled = false
-        let removedLines = engine.removeCompletedLines()
-        if removedLines.linesRemoved.count > 0 {
+        self.view.isUserInteractionEnabled=false
+        let removedLines=engine.removeCompletedLines()
+        if removedLines.linesRemoved.count>0{
+            self.scoreLabel.text="\(engine.score)"
+            scene.collapsingLinesAnimation(linesToRemove: removedLines.linesRemoved, fallenBlocks: removedLines.fallenBlocks){
                 self.gameShapeLand(engine: engine)
             }
-         else {
+            scene.playSound(sound: "Sounds/bomb.mp3")
+        } else {
             nextShape()
         }
     }
@@ -132,4 +151,5 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
     func gameShapeMove(engine: Engine) {
         scene.redrawShape(shape: engine.fallingShape!) {}
     }
+    
 }
