@@ -204,7 +204,7 @@ class GameScene: SKScene {
                 point = CGPoint(x:point.x + (goLeft ? -randomRadius : randomRadius), y:point.y)
                 let randomDuration = TimeInterval(arc4random_uniform(2))+0.5
                 
-                var startAngle = CGFloat(M_PI)
+                var startAngle = CGFloat(Double.pi)
                 var endAngle = startAngle*2
                 if goLeft {
                     endAngle = startAngle
