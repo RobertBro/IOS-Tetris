@@ -15,8 +15,9 @@ let StartingRow = 0
 let PreviewColumn = 12
 let PreviewRow = 1
 
-let PointsPerLine = 10
-let LevelThreshold = 500
+var PointsPerLine = 10
+// Zad8 var RowsDestroyed = 0
+let LevelThreshold = 100
 
 protocol EngineFunctions{
 
@@ -107,6 +108,8 @@ class Engine{
     }
     
     func endGame() {
+        //Zad8 PointsPerLine=10
+        //Zad8 RowsDestroyed=0
         score = 0
         level = 1
         delegate?.gameEnd(engine: self)
@@ -133,13 +136,18 @@ class Engine{
         if removedLines.count == 0 {
             return ([], [])
         }
+        //Zad8 RowsDestroyed += removedLines.count
+
         let pointsEarned = removedLines.count * PointsPerLine * level
         score += pointsEarned
         if score >= level * LevelThreshold {
             level += 1
             delegate?.gameNextLevel(engine:self)
         }
-        
+        //Zad8 while (RowsDestroyed>=5){
+         //   PointsPerLine+=10
+          //  RowsDestroyed-=5
+        //}
         var fallenBlocks = Array<Array<Block>>()
         for column in 0..<NumColumns {
             var fallenBlocksArray = Array<Block>()
