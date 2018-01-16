@@ -5,6 +5,8 @@
 //  Created by RMS on 24.10.2017.
 //  Copyright © 2017 RMS. All rights reserved.
 //
+// wibracje import UIKit
+// wibracje import AudioToolbox
 
 let NumColumns = 10
 let NumRows = 20
@@ -116,6 +118,7 @@ class Engine{
     }
     
     func removeCompletedLines() -> (linesRemoved: Array<Array<Block>>, fallenBlocks: Array<Array<Block>>) {
+                       // wibracje    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         var removedLines = Array<Array<Block>>()
         for row in (1..<NumRows).reversed() {
             var rowOfBlocks = Array<Block>()

@@ -10,6 +10,7 @@ import SpriteKit
 import GameplayKit
 import CoreGraphics
 
+
 let TickLengthLevelOne=TimeInterval(600)
 let BlockSize:CGFloat = 20.0
 
@@ -53,8 +54,8 @@ class GameScene: SKScene {
         shapeLayer.position = LayerPosition
         shapeLayer.addChild(gameBoard)
         gameLayer.addChild(shapeLayer)
-        
-        run(SKAction.repeatForever(SKAction.playSoundFileNamed("Sounds/theme.mp3", waitForCompletion: true)))
+         run(SKAction.repeatForever(SKAction.playSoundFileNamed("Sounds/theme.mp3", waitForCompletion: true)))
+   // zad1     run(SKAction.repeatForever(SKAction.playSoundFileNamed("Sounds/theme2.wav", waitForCompletion: true)))
     }
     
     
@@ -126,21 +127,16 @@ class GameScene: SKScene {
     
     func addPreviewShapeToScene(shape:Shape, completion:@escaping () -> ()) {
         for block in shape.blocks {
-            // #10
             var texture = textureCache[block.spriteName]
             if texture == nil {
                 texture = SKTexture(imageNamed: block.spriteName)
                 textureCache[block.spriteName] = texture
             }
             let sprite = SKSpriteNode(texture: texture)
-            // #11
             sprite.position = pointForColumn(column: block.column, row:block.row - 2)
             shapeLayer.addChild(sprite)
             block.sprite = sprite
-            
-            // Animation
             sprite.alpha = 0
-            // #12
             let moveAction = SKAction.move(to: pointForColumn(column: block.column, row: block.row), duration: TimeInterval(0.2))
             moveAction.timingMode = .easeOut
             let fadeInAction = SKAction.fadeAlpha(to: 0.7, duration: 0.4)
@@ -177,12 +173,10 @@ class GameScene: SKScene {
     }
     func collapsingLinesAnimation(linesToRemove: Array<Array<Block>>,fallenBlocks: Array<Array<Block>>,completion:@escaping ()->()){
         var longestDuration:TimeInterval=0
-        
         for (columnIdx,column) in fallenBlocks.enumerated(){
             for (blockIdx,block) in column.enumerated(){
                 let newPosition=pointForColumn(column: block.column,row: block.row)
                 let sprite = block.sprite!
-                
                 let delay=(TimeInterval(columnIdx) * 0.05)+(TimeInterval(blockIdx)*0.05)
                 let duration=TimeInterval(((sprite.position.y-newPosition.y)/BlockSize)*0.1)
                 let moveAction=SKAction.move(to: newPosition,duration: duration)
@@ -192,6 +186,7 @@ class GameScene: SKScene {
                         SKAction.wait(forDuration: delay),
                         moveAction]))
                 longestDuration=max(longestDuration,duration+delay)
+
                 
             }
             

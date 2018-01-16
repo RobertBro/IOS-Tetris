@@ -2,11 +2,14 @@
 
 let NumOrientations: UInt32 = 4
 let NumShapeTypes: UInt32=7
+// zad7 let NumShapeTypes: UInt32=8
+
 
 let FirstBlockIdx: Int=0
 let SecondBlockIdx:Int=1
 let ThirdBlockIdx:Int=2
 let FourthBlockIdx:Int=3
+// zad 7 let FifthBlockIdx:Int=4
 
 class Shape: Hashable, CustomStringConvertible{
     let color:BlockColor
@@ -126,6 +129,8 @@ final func initializeBlocks(){
             return JShape(column:startingColumn, row:startingRow)
         case 5:
             return SShape(column:startingColumn, row:startingRow)
+       //  zad 7 case 6:
+       //     return CRShape(column:startingColumn, row:startingRow)
         default:
             return ZShape(column:startingColumn, row:startingRow)
         }
