@@ -69,6 +69,25 @@
                                     </label>
                                 </subviews>
                             </view>
+                            <view hidden="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4aQ-gR-2XS">
+                                <rect key="frame" x="26" y="113" width="170" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRD-UO-n4T">
+                                        <rect key="frame" x="45" y="31" width="80" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="New Game">
+                                            <color key="titleColor" red="1" green="0.15801775446657951" blue="0.1881772277712751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="click:" destination="BV1-FR-VrT" eventType="touchUpInside" id="n2q-SH-mpL"/>
+                                            <action selector="newGameButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ArM-w1-bpq"/>
+                                            <action selector="sdfsdfdffsdf:" destination="BV1-FR-VrT" eventType="touchUpInside" id="6M6-dq-vjG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -103,6 +122,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="24.375" y="30"/>
         </scene>
     </scenes>
     <resources>

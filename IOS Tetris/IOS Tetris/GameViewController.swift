@@ -18,6 +18,7 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
         super.viewDidLoad()
         
         let skView = view as! SKView
+        
         skView.isMultipleTouchEnabled = false
 
         scene = GameScene(size: skView.bounds.size)
@@ -34,6 +35,7 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
     }
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
+    
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -106,24 +108,34 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
         }
     }
     
-    func gameEnd(engine: Engine) {
-        view.isUserInteractionEnabled = false
+
+    @IBAction func sdfsdfdffsdf(_ sender: Any) {
+        print("bullshit")
+    }
+        func gameEnd(engine: Engine) {
+       // view.isUserInteractionEnabled = false
         scene.stopTicking()
         scene.playSound(sound: "Sounds/gameover.mp3")
         scene.collapsingLinesAnimation(linesToRemove: engine.removeAllBlocks(), fallenBlocks: engine.removeAllBlocks()){
-            engine.startGame()
+           
+            self.view.viewWithTag(2)?.isHidden=false;
+            
+            //engine.startGame()
         }}
+    
     
     func gameNextLevel(engine: Engine) {
         levelLabel.text="\(engine.level)"
-        if scene.tickLengtrhMillis>=100{
+       /* zad6 if scene.tickLengtrhMillis>=100{
             scene.tickLengtrhMillis-=100
         }else if scene.tickLengtrhMillis>50{
             scene.tickLengtrhMillis-=50
-        }
+            
+        }*/
         scene.playSound(sound: "Sounds/levelUp.mp3")
         
     }
+    
     
     func gameShapeDrop(engine: Engine) {
         scene.stopTicking()
