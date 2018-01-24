@@ -115,12 +115,12 @@ class GameViewController: UIViewController, EngineFunctions, UIGestureRecognizer
         scene.stopTicking()
         scene.playSound(sound: "Sounds/gameover.mp3")
         scene.collapsingLinesAnimation(linesToRemove: engine.removeAllBlocks(), fallenBlocks: engine.removeAllBlocks()){
-            var gameOverAlert = UIAlertController(title: "Game Over", message: "Do you want start again?", preferredStyle: UIAlertControllerStyle.alert)
-            gameOverAlert.addAction(UIAlertAction(title: "Ok",style: .default, handler: { (action: UIAlertAction!) in
-                engine.startGame()}))
-            self.present(gameOverAlert, animated: true, completion: nil)
+            // Zad5 var gameOverAlert = UIAlertController(title: "Game Over", message: "Do you want start again?", preferredStyle: UIAlertControllerStyle.alert)
+           // gameOverAlert.addAction(UIAlertAction(title: "Ok",style: .default, handler: { (action: UIAlertAction!) in
+          //      engine.startGame()}))
+          //  self.present(gameOverAlert, animated: true, completion: nil)
             
-            //engine.startGame()
+            engine.startGame()
         }}
     
     
